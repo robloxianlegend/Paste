@@ -1,2 +1,4 @@
 # Paste
-Home Page Soon
+SITE: https://youareadumbniggerandastupidfaggot.pages.dev/
+
+
