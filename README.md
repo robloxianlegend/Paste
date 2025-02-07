@@ -1,2 +1,2 @@
 # Paste
-Yeah.
+An __OPENSOURCE__ Dox Paste Site.
