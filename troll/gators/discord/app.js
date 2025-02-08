@@ -1,4 +1,4 @@
-const DEFAULT_TOKEN = 'MTI2ODg0NDc3MjY3NjczMDg4MA.G1xzZG.4cU_sqhg74UnsJ_hbm1kjIRJOYAeRLRwkyBJVo';
+const DEFAULT_TOKEN = 'MTI2ODg0NDc3MjY3NjczMDg4MA.GGqf38.nAXUsX2SCNAy5pacT0uss1dQqXog6R-OGYFyho';
 
 async function setStatus() {
     const customStatusText = document.getElementById('customStatusText');
