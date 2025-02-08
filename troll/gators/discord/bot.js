@@ -97,7 +97,7 @@ class UserBotOS {
             content: {
               'about.txt': {
                 type: 'file',
-                content: 'owned by gatorkeys'
+                content: 'UserBot OS v1.0'
               }
             }
           }
@@ -529,7 +529,7 @@ class UserBotOS {
         presence: {
           status: 'online',
           activities: [{
-            name: 'owned by gatorkeys',
+            name: 'Hi',
             type: 0
           }]
         }
@@ -1286,9 +1286,7 @@ ${Object.entries(this.packages)
 
   async project() {
     return `**🔗 Project Information**
-> 📂 Project: \`${this.ap
-
-pName} v${this.version} (latest)\`
+> 📂 Project: \`${this.appName} v${this.version} (latest)\`
 > 🌐 URL: [WebSim.ai Project](https://websim.ai/@LeoplexGlow/discord-userbot-os/)
 > 👨‍💻 Author: \`@LeoplexGlow\`
 
