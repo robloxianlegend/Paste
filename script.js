@@ -12,8 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Add click event to redirect 
   retroItem.addEventListener('click', () => {
-    window.location.href = 'https://youareadumbniggerandastupidfaggot.pages.dev/doxs/kean'; // Replaced with a neutral URL
+    window.location.href = 'https://youareadumbniggerandastupidfaggot.pages.dev/doxs/kean';
   });
 });
