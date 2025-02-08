@@ -413,3 +413,13 @@ h1:hover {
   cursor: pointer;
   border-radius: 50%;
 }
+
+#qnaLink {
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+#qnaLink:hover {
+  color: #666;
+}
