@@ -1,0 +1,194 @@
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #000;
+    color: #fff;
+    line-height: 1.6;
+    padding: 20px;
+    cursor: none !important; 
+    overflow-x: hidden; 
+    scroll-behavior: smooth;
+    transition: scroll-behavior 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.3) transparent;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #111;
+    padding: 20px;
+    border: 2px solid #888;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+header {
+    text-align: center;
+    border-bottom: 1px solid #888;
+    padding-bottom: 10px;
+}
+
+h1 {
+    color: #fff;
+    text-transform: lowercase;
+}
+
+.subtitle {
+    color: #aaa;
+    font-size: 0.8em;
+}
+
+section {
+    margin-top: 20px;
+    border-top: 1px dotted #888;
+    padding-top: 10px;
+}
+
+h2 {
+    color: #fff;
+    text-transform: lowercase;
+}
+
+h3 {
+    color: #aaa;
+    text-transform: lowercase;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 5px 0;
+    border-bottom: 1px solid #444;
+    text-transform: lowercase;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Non-clickable list items shrink slightly on hover */
+li:not([data-url]):hover {
+    transform: scale(0.98);
+    color: #ccc;
+}
+
+/* Clickable list items (with data-url) increase on hover */
+li[data-url] {
+    cursor: pointer;
+}
+
+li[data-url]:hover {
+    color: #ddd;
+    transform: scale(1.05);
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.7em;
+    color: #888;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.image-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.image-grid img:hover {
+    transform: scale(1.05);
+}
+
+.photo-popup {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.photo-popup .popup-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close-popup {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.close-popup:hover {
+    color: #bbb;
+    transform: scale(1.1);
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: 
+    width 0.2s ease, 
+    height 0.2s ease, 
+    background-color 0.2s ease;
+}
+
+.custom-cursor.hover {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+* {
+    cursor: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.3) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255,255,255,0.5);
+}
