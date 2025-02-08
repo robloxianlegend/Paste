@@ -13,6 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   retroItem.addEventListener('click', () => {
-    window.location.href = 'https://youareadumbniggerandastupidfaggot.pages.dev/doxs/kean';
+    window.location.href = 'https://youareadumbniggerandastupidfaggot.pages.dev/doxs/kean/';
   });
 });
