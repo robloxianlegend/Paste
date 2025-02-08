@@ -1,0 +1,236 @@
+body {
+  background: linear-gradient(135deg, #FFE5E5 0%, #FFF3D4 100%);
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', monospace;
+  color: #333;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 133, 162, 0.5);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 133, 162, 0.7);
+}
+
+#login-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.login-container {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid rgba(255,192,203,0.3);
+}
+
+.login-container h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #FF85A2;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #FF85A2;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(255,255,255,0.9);
+  border: 2px solid #FFB5C5;
+  color: #333;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #FF85A2;
+  box-shadow: 0 0 10px rgba(255,133,162,0.2);
+}
+
+#login-btn {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #FF85A2 0%, #FFB5C5 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255,133,162,0.3);
+}
+
+#login-btn:active {
+  transform: translateY(0);
+}
+
+.warning {
+  margin-top: 1.5rem;
+  color: #FF6B6B;
+  text-align: center;
+  font-size: 0.95rem;
+  background: rgba(255,107,107,0.1);
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,107,107,0.2);
+}
+
+.app-logo {
+  width: auto;
+  height: 180px;
+  margin: 0 auto 2rem;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.app-logo:hover {
+  transform: scale(1.05);
+}
+
+#terminal {
+  background: rgba(0, 0, 0, 0.95);
+  border-radius: 0;
+  box-shadow: none;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Monaco', 'Consolas', monospace;
+}
+
+#terminal-header {
+  background: linear-gradient(135deg, #FF85A2 0%, #FFB5C5 100%);
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.version-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+
+#status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #f00;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+#status-indicator.online {
+  background: #4CAF50;
+  box-shadow: 0 0 10px #4CAF50;
+}
+
+#terminal-output {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  font-size: 15px;
+  line-height: 1.5;
+  scroll-behavior: smooth;
+}
+
+#input-line {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.prompt {
+  color: #4CAF50;
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+#terminal-input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  width: 100%;
+  outline: none;
+}
+
+.command-output {
+  margin: 8px 0;
+  color: #E0E0E0;
+  padding: 4px 0;
+}
+
+.error {
+  color: #FF5252;
+  background: rgba(255,82,82,0.1);
+  padding: 8px;
+  border-radius: 4px;
+  margin: 8px 0;
+}
+
+.success {
+  color: #4CAF50;
+  background: rgba(76,175,80,0.1);
+  padding: 8px;
+  border-radius: 4px;
+  margin: 8px 0;
+}
