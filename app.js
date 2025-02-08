@@ -35,7 +35,7 @@ class DoxbinApp {
     documentItem.classList.add('document-item');
     documentItem.innerHTML = `
       <div class="document-name">${name}</div>
-      <div class="document-uploader">Uploaded by: ${uploader}</div>
+      <div class="document-uploader">Uploaded by: @a</div>
     `;
     
     documentItem.addEventListener('click', () => {
