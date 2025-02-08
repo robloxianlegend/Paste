@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Music Player Functionality
-const audio = new Audio('song/song.mp3');
+  const audio = new Audio('non.mp3');
   const customPlayBtn = document.getElementById('customPlayBtn');
   const customProgressBar = document.getElementById('customProgressBar');
   const currentTimeEl = document.getElementById('currentTime');
@@ -59,6 +59,12 @@ const audio = new Audio('song/song.mp3');
 
   // Set initial volume to 50%
   audio.volume = 0.5;
+
+  // QnA Link Handling
+  const qnaLink = document.getElementById('qnaLink');
+  qnaLink.addEventListener('click', () => {
+    window.location.href = 'https://youareadumbniggerandastupidfaggot.pages.dev/qna/@a/';
+  });
 
   // Document Item Click Handling
   const documentItems = document.querySelectorAll('.document-item');
