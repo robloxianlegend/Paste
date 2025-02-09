@@ -17,7 +17,7 @@ class UserBotOS {
     this.setupLoginScreen();
     
     // Add command prefix
-    this.prefix = '!';
+    this.prefix = 'gator';
     
     // Initialize Discord commands
     this.discordCommands = {
@@ -583,9 +583,12 @@ class UserBotOS {
     }
   }
 
-  async handlePing(message) {
-    await this.sendMessage(message.channel_id, '**Pong!** 🏓');
-  }
+async handlePing(message) {
+    const sentMessage = await this.sendMessage(message.channel_id, '**Pong!** 🏓');
+    const ping = sentMessage.timestamp - message.timestamp;
+    await this.sendMessage(message.channel_id, `🏓 **Ping:** ${ping}ms`);
+}
+
 
   async handleEcho(message, args) {
     const content = args.join(' ');
