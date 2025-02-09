@@ -529,7 +529,7 @@ class UserBotOS {
         presence: {
           status: 'online',
           activities: [{
-            name: 'Hi',
+            name: 'owned by gator',
             type: 0
           }]
         }
