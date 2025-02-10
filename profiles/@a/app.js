@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // QnA Link Handling
   const qnaLink = document.getElementById('qnaLink');
   qnaLink.addEventListener('click', () => {
-    window.location.href = 'https://youareadumbniggerandastupidfaggot.pages.dev/troll/gators/discord';
+    window.location.href = 'https://youareadumbniggerandastupidfaggot.pages.dev/photobooth/';
   });
 
   // Document Item Click Handling
