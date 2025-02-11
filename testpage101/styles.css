@@ -1,0 +1,376 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  background: #1a1a1a;
+  color: #dcddde;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #121212;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.chat-header {
+  height: 60px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1e1e1e;
+  border-bottom: 1px solid #333;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.music-toggle {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.music-toggle:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #121212;
+}
+
+.message {
+  display: flex;
+  gap: 15px;
+  background: #1e1e1e;
+  padding: 15px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.message-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #333;
+}
+
+.message-content {
+  flex: 1;
+}
+
+.message-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.message-author {
+  font-weight: 600;
+  color: #fff;
+}
+
+.message-time {
+  color: #777;
+  font-size: 12px;
+}
+
+.message-time::after {
+  content: "";
+}
+
+.message.edited .message-time::after {
+  content: " (edited)";
+  color: #666;
+  font-style: italic;
+}
+
+.message-text {
+  color: #ddd;
+  line-height: 1.5;
+}
+
+.user-mention {
+  color: #4a9eff;
+  font-weight: 500;
+  cursor: pointer;
+  background: rgba(74, 158, 255, 0.1);
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+.message-reactions {
+  margin-top: 10px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.reaction {
+  background: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 15px;
+  padding: 4px 8px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reaction:hover {
+  background: #3a3a3a;
+}
+
+.reaction.active {
+  background: #4a9eff;
+  color: white;
+  border-color: #4a9eff;
+}
+
+.add-reaction {
+  color: #777;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  background: #2a2a2a;
+  transition: all 0.2s;
+}
+
+.add-reaction:hover {
+  background: #3a3a3a;
+}
+
+.emoji-picker {
+  position: absolute;
+  background: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 5px;
+  z-index: 100;
+  transform: translateY(-100%);
+  margin-top: -10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.chat-input {
+  padding: 15px;
+  background: #1e1e1e;
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid #333;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 12px;
+  background: #2a2a2a;
+  border: none;
+  border-radius: 20px;
+  color: #ddd;
+  outline: none;
+}
+
+.upload-button {
+  background: #2a2a2a;
+  border: none;
+  border-radius: 50%;
+  color: #ddd;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.upload-button:hover {
+  background: #3a3a3a;
+}
+
+.jump-to-latest {
+  position: absolute;
+  bottom: 90px;
+  right: 20px;
+  background: #4a9eff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.2s;
+  z-index: 100;
+}
+
+.jump-to-latest.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.user-suggestions {
+  position: absolute;
+  bottom: 80px;
+  left: 20px;
+  right: 20px;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.user-suggestion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.user-suggestion:hover {
+  background: #2a2a2a;
+}
+
+.user-suggestion img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 2px solid #333;
+}
+
+.message-image {
+  max-width: 200px;  
+  max-height: 200px; 
+  border-radius: 10px; 
+  object-fit: cover; 
+  margin-top: 10px; 
+  cursor: pointer; 
+}
+
+.message-actions {
+  position: absolute;
+  right: 15px;
+  display: none;
+  gap: 5px;
+}
+
+.message:hover .message-actions {
+  display: flex;
+}
+
+.message-action-btn {
+  background: #2a2a2a;
+  border: none;
+  color: #aaa;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.message-action-btn:hover {
+  background: #3a3a3a;
+  color: #fff;
+}
+
+.message-action-btn.delete:hover {
+  background: #ff4444;
+  color: #fff;
+}
+
+.edit-input {
+  width: 100%;
+  background: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 8px 12px;
+  color: #ddd;
+  margin-top: 5px;
+  outline: none;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.edit-button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.save-edit {
+  background: #4a9eff;
+  color: white;
+}
+
+.save-edit:hover {
+  background: #3a8eef;
+}
+
+.cancel-edit {
+  background: #2a2a2a;
+  color: #ddd;
+}
+
+.cancel-edit:hover {
+  background: #3a3a3a;
+}
