@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>peer</title>
+  
+  <!-- Meta Tags for Social Media Sharing -->
+  <meta property="og:title" content="Peer-to-Peer Chat">
+  <meta property="og:description" content="A simple, secure, and private peer-to-peer chat application. No limits, no tracking, just communication.">
+  <meta property="og:image" content="/ye.jpg">
+  <meta property="og:url" content="[replace with your URL here]">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+</head>
+
+<body>
+
+  <div class="chat-container">
+    <div id="chat-messages">
+      <!-- messages will be added here -->
+    </div>
+
+    <div class="input-area">
+      <input type="text" id="message-input" placeholder="type your message...">
+      <button id="send-button">send</button>
+    </div>
+
+    <div class="input-area">
+      <input type="text" id="peer-id-input" placeholder="enter peer id to connect...">
+      <button id="connect-button">connect</button>
+    </div>
+
+    <div class="input-area">
+      <input type="file" id="file-input" accept="*">
+      <button id="send-file-button">send file</button>
+    </div>
+
+    <p>share ur peer id with the person u wanna talk 2</p>
+
+    <div id="peer-id-display">
+      <!-- peer id will be displayed here -->
+    </div>
+
+    <div class="embed">
+      <img src="/ye.jpg" alt="embed icon" class="embed-icon">
+      <p class="embed-text">better than discord (i think) no file upload limits, no nitro, no account stealing, nothing saved</p>
+    </div>
+  </div>
+
+  <!-- the modal -->
+  <div id="image-modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-image">
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
