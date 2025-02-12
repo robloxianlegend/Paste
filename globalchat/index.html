@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>anonymous chatroom</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div id="chat-area">
+      <!-- Messages will be appended here -->
+    </div>
+    <div class="input-area">
+      <input type="text" id="message-input" placeholder="Type your message...">
+      <button id="send-button">Send</button>
+      <input type="file" id="file-input" multiple style="display: none;">
+      <label for="file-input" id="file-label">Upload</label>
+    </div>
+    <div id="welcome-message-area">
+      <!-- Welcome message here -->
+    </div>
+  </div>
+
+  <!-- The Modal -->
+  <div id="modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div id="modal-content">
+        <!-- Content will be dynamically added here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- The Secret Modal -->
+  <div id="secret-modal" class="modal">
+    <div id="secret-modal-content">
+      <label for="new-username">Enter New Username:</label>
+      <input type="text" id="new-username" placeholder="New Username">
+      <button onclick="changeUsername()">Change Username</button>
+    </div>
+  </div>
+
+  <!-- Custom Notification -->
+  <div id="notification"></div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

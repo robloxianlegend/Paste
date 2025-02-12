@@ -1,0 +1,381 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 80%;
+  max-width: 800px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#chat-area {
+  padding: 20px;
+  height: 400px;
+  overflow-y: scroll;
+  border-bottom: 1px solid #eee;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#chat-area::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+#chat-area {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.message {
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  background-color: #e1e1e1;
+  display: inline-block;
+  max-width: 70%;
+  word-break: break-word;
+  position: relative;
+}
+
+.message.self {
+  background-color: #d2f9ff;
+}
+
+.thread {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.input-area {
+  display: flex;
+  padding: 15px;
+  background-color: #f9f9f9;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+#message-input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 16px;
+  outline: none;
+}
+
+#send-button,
+#file-label {
+  padding: 10px 20px;
+  background-color: #333333;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  margin-left: 5px;
+}
+
+#send-button:hover,
+#file-label:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#send-button:active,
+#file-label:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+#welcome-message-area {
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-top: 1px solid #eee;
+  text-align: left;
+  font-size: 0.8em;
+  color: #777;
+  border-radius: 0 0 8px 8px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #121212;
+    color: #fff;
+  }
+
+  .container {
+    background-color: #1e1e1e;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+
+  #chat-area {
+    border-bottom: 1px solid #333;
+  }
+
+  .message {
+    background-color: #333;
+    color: #fff;
+  }
+
+  .message.self {
+    background-color: #2a4f59;
+    color: #fff;
+  }
+
+  .input-area {
+    background-color: #252525;
+  }
+
+  #message-input {
+    border: 1px solid #555;
+    background-color: #333;
+    color: #fff;
+  }
+
+  #welcome-message-area {
+    background-color: #252525;
+    border-top: 1px solid #333;
+    color: #999;
+  }
+}
+
+#file-label {
+  background-color: #333333;
+}
+
+#file-label:hover {
+  background-color: #367c39;
+}
+
+#file-label.dragover {
+  background-color: #367c39;
+}
+
+.file-content {
+  max-width: 200px;
+  max-height: 200px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.file-message {
+  display: flex;
+  flex-direction: column;
+}
+
+.zip-embed,
+.audio-embed {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.0);
+  transition: background-color 0.3s ease;
+}
+
+.zip-embed:hover,
+.audio-embed:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.file-name-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.file-name-row a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.file-name-row a:hover {
+  text-decoration: underline;
+}
+
+.audio-element {
+  width: 100%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 20px;
+  border: none;
+  width: 80%;
+  max-width: 800px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.modal-content-element {
+  max-width: 100%;
+  max-height: 80vh;
+  display: block;
+  margin: 0 auto;
+}
+
+.sender-tag {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+/* Secret Modal styles */
+#secret-modal {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+#secret-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 8px;
+  position: relative;
+}
+
+#secret-modal-content label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+#secret-modal-content input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#secret-modal-content button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#secret-modal-content button:hover {
+  background-color: #45a049;
+}
+
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(255, 0, 0, 0.7);
+  color: white;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8em;
+  display: none;
+}
+
+.message:hover .delete-button {
+  display: block;
+}
+
+.reply-button {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: rgba(0, 123, 255, 0.7);
+  color: white;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8em;
+  display: none;
+}
+
+.message:hover .reply-button {
+  display: block;
+}
+
+.reply-preview {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 4px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  font-size: 0.9em;
+}
+
+.message.replying-to {
+  border: 2px solid #007bff;
+}
+
+/* Custom Notification */
+#notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  display: none;
+}
