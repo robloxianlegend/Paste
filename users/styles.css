@@ -44,7 +44,6 @@ header {
   justify-content: center;
   align-items: center;
   position: relative;
-  border-bottom: 1px solid var(--border-color);
   padding-bottom: 15px;
   margin-bottom: 20px;
   animation: slideIn 0.5s ease-out;
@@ -323,6 +322,30 @@ h1:hover {
   vertical-align: middle;
   border-radius: var(--border-radius);
   transition: color var(--transition-duration) ease, border-color var(--transition-duration) ease;
+  position: relative; 
+}
+
+.owner-tag:hover .tooltip {
+  visibility: visible; 
+  opacity: 1;
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border: 1px solid var(--border-color);
+  border-style: dashed;
 }
 
 #musicPlayer {
@@ -369,8 +392,15 @@ h1:hover {
   border: 1px solid var(--border-color);
   margin-bottom: 10px;
   border-radius: var(--border-radius);
-  transition: border-color var(--transition-duration) ease;
-  border-style: dashed; /* Make corners dashed */
+  transition: transform 0.3s ease;
+}
+
+.track-artwork.tilt-left {
+  transform: rotate(-5deg);
+}
+
+.track-artwork.tilt-right {
+  transform: rotate(5deg);
 }
 
 .custom-progress-container {
