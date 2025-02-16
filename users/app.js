@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Music Player Functionality
-  const audio = new Audio('non.mp3');
+  const audio = new Audio('songs/non.mp3');
   const customPlayBtn = document.getElementById('customPlayBtn');
   const customProgressBar = document.getElementById('customProgressBar');
   const currentTimeEl = document.getElementById('currentTime');
