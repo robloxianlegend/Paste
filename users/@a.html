@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="connectionScreen" class="connection-screen">
+    <div class="connection-content">
+      <div id="connectionStatus">checking connection...</div>
+    </div>
+  </div>
+
+  <div id="container" style="display: none;">
+    <header>
+      <h1>redesign</h1>
+    </header>
+
+    <main>
+      <div id="profileSection">
+        <div class="profile-card">
+          <div class="profile-image">
+            <img src="pfp.png" alt="profile picture">
+          </div>
+          <div class="profile-details">
+            <h2 id="profileName">@a <span class="owner-tag">owner</span></h2>
+            <p id="profileBio">ask me <b id="qnaLink">questions</b></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="musicPlayer">
+        <div class="music-container">
+          <img src="non.png" alt="Track Artwork" class="track-artwork">
+          <div class="track-info">
+            <h3 id="trackTitle">no_one_noticed.mp3</h3>
+          </div>
+          <div class="custom-progress-container">
+            <input type="range" id="customProgressBar" min="0" max="100" value="0">
+          </div>
+          <div class="music-controls">
+            <div class="play-controls">
+              <div id="customPlayBtn" class="custom-play-btn">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                  <polygon points="5 3 19 12 5 21" fill="var(--text-color)"/>
+                </svg>
+              </div>
+            </div>
+            <div class="time-info">
+              <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="documentSection">
+        <div id="documentList" class="empty-list">
+          <div class="document-placeholder">nothing to see here (yet)....</div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="app.js" type="module"></script>
+</body>
+</html>
