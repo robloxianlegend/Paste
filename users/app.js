@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Music Player Functionality
-  const audio = new Audio('songs/non.mp3');
+  const audio = new Audio('non.mp3');
   const customPlayBtn = document.getElementById('customPlayBtn');
   const customProgressBar = document.getElementById('customProgressBar');
   const currentTimeEl = document.getElementById('currentTime');
@@ -154,4 +154,19 @@ document.addEventListener('DOMContentLoaded', () => {
       snowInterval = setInterval(createSnowflake, 200);
     }
   }
+
+  const trackArtwork = document.querySelector('.track-artwork');
+  let isTiltLeft = true;
+
+  trackArtwork.addEventListener('mouseenter', () => {
+    if (isTiltLeft) {
+      trackArtwork.classList.remove('tilt-left');
+      trackArtwork.classList.add('tilt-right');
+      isTiltLeft = false;
+    } else {
+      trackArtwork.classList.remove('tilt-right');
+      trackArtwork.classList.add('tilt-left');
+      isTiltLeft = true;
+    }
+  });
 });
