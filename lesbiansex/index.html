@@ -1,0 +1,267 @@
+<html>
+<head>
+  <title>AimLabs Practice</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    body { 
+      margin: 0; 
+      background-color: #000;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+    canvas { 
+      display: block; 
+    }
+    #username-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 3000;
+    }
+    .username-container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 4px;
+      text-align: center;
+      max-width: 300px;
+      width: 100%;
+    }
+    .username-input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      border-radius: 4px;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .username-input:focus {
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    #crosshair {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 16px;
+      pointer-events: none;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+      display: none;
+      user-select: none;
+    }
+    .ui-element {
+      position: fixed;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 20px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      display: none;
+      pointer-events: none;
+      user-select: none;
+      font-weight: 300;
+    }
+    #score { top: 20px; left: 20px; }
+    #timer { top: 20px; right: 20px; }
+    #username-display { top: 50px; left: 20px; font-size: 16px; opacity: 0.7; }
+    .hit-effect {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 6px;
+      height: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: hitExpand 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      user-select: none;
+    }
+    @keyframes hitExpand {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(3);
+      }
+    }
+    #menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #101010 0%, #000000 100%);
+      color: #fff;
+      z-index: 1000;
+      padding: 20px;
+    }
+    .menu-button {
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 14px 28px;
+      margin: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-radius: 3px;
+      min-width: 280px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+    .menu-button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-1px);
+    }
+    #start-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #101010 0%, #000000 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      cursor: pointer;
+    }
+    .start-text {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 24px;
+      text-align: center;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease forwards;
+      font-weight: 300;
+    }
+    .game-over {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.95);
+      padding: 30px;
+      border-radius: 4px;
+      text-align: center;
+      color: #fff;
+      display: none;
+      z-index: 1000;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      min-width: 280px;
+    }
+    .game-over h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      letter-spacing: 2px;
+      font-weight: 300;
+    }
+    #finalScore {
+      font-size: 42px;
+      margin: 15px 0;
+      letter-spacing: 1px;
+      font-weight: 300;
+    }
+  </style>
+</head>
+<body>
+  <div id="username-modal">
+    <div class="username-container">
+      <h2 style="color: white; font-weight: 300; margin-bottom: 20px;">Enter Username</h2>
+      <input type="text" id="username-input" class="username-input" placeholder="Username" maxlength="20">
+      <button class="menu-button" onclick="setUsername()">Start</button>
+    </div>
+  </div>
+  <div id="start-screen">
+    <div class="start-text">
+      CLICK ANYWHERE TO START<br>
+      <span style="font-size: 16px; opacity: 0.6; font-weight: 300; margin-top: 12px; display: block;">FULLSCREEN MODE</span>
+    </div>
+  </div>
+  <div id="root"></div>
+  <div id="crosshair">+</div>
+  <div id="score" class="ui-element">Score: <span id="scoreValue">0</span></div>
+  <div id="timer" class="ui-element">Time: <span id="timeValue">0</span></div>
+  <div id="username-display" class="ui-element"></div>
+  <div id="gameOver" class="game-over">
+    <h2>TASK COMPLETE</h2>
+    <span id="finalScore">0</span>
+    <button class="menu-button" onclick="window.game.returnToMenu()">Return to Menu</button>
+  </div>
+  <script>
+    let username = localStorage.getItem('aimlabs_username');
+    let lastScore = localStorage.getItem('aimlabs_last_score') || 0;
+    
+    if (username) {
+      document.getElementById('username-modal').style.display = 'none';
+      document.getElementById('username-display').textContent = username;
+    }
+
+    function setUsername() {
+      const input = document.getElementById('username-input');
+      username = input.value.trim();
+      if (username) {
+        localStorage.setItem('aimlabs_username', username);
+        document.getElementById('username-modal').style.display = 'none';
+        document.getElementById('username-display').textContent = username;
+      }
+    }
+
+    async function sendToDiscord(score) {
+      const currentScore = score;
+      const webhookUrl = 'https://discord.com/api/webhooks/1336296293391138849/Rlz4NTGKNt9A1gZNGFfCfgD-V9SQtIF8BRcoQFU8Awrk9vP9UjUgXZ98Mrx3Bv3G91jV';
+      
+      const message = {
+        embeds: [{
+          color: 16777215, // White color in decimal
+          description: `**${username}** has a score of **${currentScore}**\n${username}'s last score was **${lastScore}**${currentScore > lastScore ? ' and beat their previous score!' : ''}`
+        }]
+      };
+
+      try {
+        await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(message)
+        });
+        localStorage.setItem('aimlabs_last_score', currentScore);
+        lastScore = currentScore;
+      } catch (error) {
+        console.error('Error sending score to Discord:', error);
+      }
+    }
+
+    document.getElementById('start-screen').addEventListener('click', function() {
+      this.style.display = 'none';
+      document.documentElement.requestFullscreen();
+    });
+
+    // Prevent input from triggering game actions
+    document.getElementById('username-input').addEventListener('keydown', function(e) {
+      e.stopPropagation();
+    });
+  </script>
+  <script type="text/babel" src="menu.jsx"></script>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
