@@ -1,0 +1,179 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Chat</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #121212; 
+      color: #fff; 
+      height: 100vh; 
+      overflow: hidden; 
+    }
+
+    #chat-container {
+      width: 100%;
+      height: 100%;
+      max-width: none; 
+      margin: 0;
+      background-color: #1e1e1e; 
+      border-radius: 0;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #chat-messages {
+      padding: 20px;
+      flex-grow: 1;
+      overflow-y: auto; 
+    }
+
+    .message {
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 8px;
+      clear: both;
+    }
+
+    .user-message {
+      background-color: #388E3C; 
+      text-align: right;
+      float: right;
+      color: #fff;
+    }
+
+    .ai-message {
+      background-color: #333; 
+      text-align: left;
+      float: left;
+    }
+
+    #input-container {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #555; 
+    }
+
+    #message-input {
+      flex-grow: 1;
+      padding: 8px;
+      border: 1px solid #555; 
+      border-radius: 4px;
+      margin-right: 10px;
+      background-color: #444; 
+      color: #fff;
+    }
+
+    #send-button {
+      background-color: #03A9F4; 
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #chat-messages::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #chat-messages::-webkit-scrollbar-track {
+      background: #333;
+    }
+
+    #chat-messages::-webkit-scrollbar-thumb {
+      background: #555;
+      border-radius: 4px;
+    }
+
+    #chat-messages::-webkit-scrollbar-thumb:hover {
+      background: #777;
+    }
+  </style>
+</head>
+<body>
+  <div id="chat-container">
+    <div id="chat-messages">
+      <!-- Messages will be added here -->
+    </div>
+    <div id="input-container">
+      <input type="text" id="message-input" placeholder="Type your message...">
+      <button id="send-button">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatMessages = document.getElementById('chat-messages');
+    const messageInput = document.getElementById('message-input');
+    const sendButton = document.getElementById('send-button');
+
+    let conversationHistory = [];
+
+    sendButton.addEventListener('click', sendMessage);
+    messageInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault(); 
+        sendMessage();
+      }
+    });
+
+    async function sendMessage() {
+      const messageText = messageInput.value.trim();
+      if (!messageText) return;
+
+      // Add user message to the chat
+      addUserMessage(messageText);
+
+      // Add user message to conversation history
+      const userMessage = { role: 'user', content: messageText };
+      conversationHistory.push(userMessage);
+      conversationHistory = conversationHistory.slice(-10);
+
+      // Clear the input field
+      messageInput.value = '';
+
+      // Call the AI and add the response
+      try {
+        const completion = await websim.chat.completions.create({
+          messages: [
+            {
+              role: 'system',
+              content: 'You are a friendly assistant.',
+            },
+            ...conversationHistory,
+          ],
+        });
+
+        const aiResponse = completion.content;
+        addAiMessage(aiResponse);
+
+        const aiMessage = { role: 'assistant', content: aiResponse };
+        conversationHistory.push(aiMessage);
+      } catch (error) {
+        console.error('Error calling AI:', error);
+        addAiMessage('Sorry, I encountered an error.');
+      }
+    }
+
+    function addUserMessage(message) {
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('message', 'user-message');
+      messageElement.textContent = message;
+      chatMessages.appendChild(messageElement);
+      chatMessages.scrollTop = chatMessages.scrollHeight; 
+    }
+
+    function addAiMessage(message) {
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('message', 'ai-message');
+      messageElement.textContent = message;
+      chatMessages.appendChild(messageElement);
+      chatMessages.scrollTop = chatMessages.scrollHeight; 
+    }
+  </script>
+</body>
+</html>
